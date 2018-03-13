@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+    <h3>作者详情</h3>
+    <hr/>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                 <img src="{{ author.portrait.url }}" class="img-rounded" style="float: left">
+            </div>
+            <div class="col-md-6">
+                <div class="jumbotron">
+                <h2>{{ author.name }}&nbsp&nbsp&nbsp&nbsp&nbsp<small>性别：{{ author.sex }}&nbsp&nbsp&nbsp&nbsp&nbsp国籍：{{ author.nationality }}</small></h2>
+                    <p>&nbsp&nbsp&nbsp&nbsp{{ author.intro }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

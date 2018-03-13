@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+    <h3>图书详情</h3>
+    <hr/>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                 <img src="{{ book.cover.url }}" class="img-rounded" style="float: left;width: 200px;height: 250px">
+            </div>
+            <div class="col-md-9">
+                <div class="jumbotron">
+                <h2>{{ book.title }}&nbsp&nbsp&nbsp&nbsp&nbsp</h2>
+                    <br>
+                    <p style="font-size: 15px">&nbsp&nbsp&nbsp&nbsp{{ book.intro }}</p>
+                </div>
+            </div>
+        </div>
+        <hr/>
+        <h3>章节目录</h3>
+        <hr/>
+        <div class="row">
+            {% load books_tags %}
+            {% get_chapter book.id as chapters %}
+            {% for chapter in chapters %}
+            <div class="col-md-4">
+               <a class="btn btn-default" href="{{ chapter.get_absolute_url }}" role="button" style="width: 100%; font-size: 11px">{{ chapter.title}}</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+    <h3>图书列表</h3>
+    <hr/>
+    <div class="container-fluid">
+    <div class="row">
+    {% for book in booklist %}
+    <div class="col-md-4">
+    <div class="thumbnail">
+      <img src="{{ book.cover.url }}" style="height: 316px;width: 100%">
+      <div class="caption">
+        <h3 style="font-size: 19px;font-weight: 600">{{ book.title }}&nbsp&nbsp&nbsp</h3>
+        <p style="height: 145px">{{ book.intro | truncatechars:"98" }}</p>
+        <p><a href="{{ book.get_absolute_url }}" class="btn btn-primary" role="button">阅读</a>
+            <a href="#" class="btn btn-default" role="button">收藏</a></p>
+      </div>
+    </div>
+    </div>
+    {% endfor %}
+    </div>
+    </div>
+
+    {% if is_paginated %}
+        <div class="pagination-simple">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">上一页</a>
+            {% endif %}
+
+            {% for i in page_range %}
+                {% if page_obj.number == i %}
+                    <a style="color:red;font-size:26px;padding: 5px" href="?page={{ i }}">{{ i }}</a>
+                {% else %}
+                    <a style="padding: 5px" href="?page={{ i }}">{{ i }}</a>
+                {% endif %}
+
+            {% endfor %}
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">下一页</a>
+            {% endif %}
+        </div>
+    {% endif %}
+{% endblock %}

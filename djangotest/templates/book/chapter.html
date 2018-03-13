@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <h3>{{ chapter.title }}</h3>
+    <hr>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                 <div class="well" style="font-size: 16px">
+                     {{ chapter.content | safe  }}
+                 </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

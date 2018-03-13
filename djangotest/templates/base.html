@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>千峰书城</title>
+
+    <!-- meta -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- css -->
+    <link rel="stylesheet" href="{% static 'base/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="{% static 'base/css/pace.css' %}">
+    <link rel="stylesheet" href="{% static 'base/css/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'base/css/highlights/github.css' %}">
+
+    <!-- js -->
+    <script src="{% static 'base/js/jquery-2.1.3.min.js' %}"></script>
+    <script src="{% static 'base/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'base/js/pace.min.js' %}"></script>
+    <script src="{% static 'base/js/modernizr.custom.js' %}"></script>
+
+</head>
+
+<body>
+<nav class="navbar navbar-default" style="margin-top: 10px">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header container" style="width: 150px">
+
+
+            <a class="navbar-brand" href="{% url 'index' %}"><span>网上书城</span></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{% url 'index' %}">主页 <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">毒鸡汤</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">我的收藏<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="http://linux.vbird.org/linux_basic/">鸟哥的Linux私房菜</a></li>
+                        <li><a href="http://man.linuxde.net/">Linux命令大全</a></li>
+                        <li><a href="http://www.cnblogs.com/chengmo/archive/2010/10/10/1847287.html">Linux
+                            Shell正则表达式差异比较</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="http://www.w3school.com.cn/">W3school</a></li>
+                        <li><a href="http://www.jquery123.com">jQuery中文文档</a></li>
+                        <li><a href="http://www.bootcss.com/">Bootstrap中文网</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="http://www.xiaodao.la/">小刀网</a></li>
+                        <li><a href="https://www.portablesoft.org/">精品绿色便携软件</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="输入内容">
+                </div>
+                <button id="bt1" type="submit" class="btn btn-default">站内搜索</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#" style="margin: 2px;padding: 0px"><img src="{% static 'base/img/me1.jpg' %}"
+                                                                      style="width: 44px;height: 44px" alt=""
+                                                                      class="img-circle"></a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">联系我<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">请发送邮件到以下邮箱</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li style="text-align: center;"><span>c.a.t_y@qq.com</span></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="content-body">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-9">
+                {% block main %}
+                {% endblock %}
+            </main>
+            <aside class="col-md-3">
+                {% load books_tags %}
+
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">最新图书</h3>
+                    </div>
+                    {% get_tags as tags_list %}
+                    <div class="panel-body">
+                        {% get_recent_books as recent_books_list %}
+                        <ul>
+                            {% for book in recent_books_list %}
+                                <li><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></li>
+                            {% empty %}
+                                暂无图书
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">标签分类</h3>
+                    </div>
+                    {% get_tags as tags_list %}
+                    <div class="panel-body">
+                        <ul>
+                            {% for tag in tags_list %}
+                                <li><a href="{{ tag.get_absolute_url }}">{{ tag.tagname }}</a></li>
+                            {% empty %}
+                                暂无标签
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+
+            </aside>
+        </div>
+    </div>
+</div>
+<footer id="site-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="copyright"><a href="http://www.miitbeian.gov.cn/" style="text-decoration: none;color: black">备案/许可证编号：鄂ICP备17028849号</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Mobile Menu -->
+<div class="overlay overlay-hugeinc">
+    <button type="button" class="overlay-close"><span class="ion-ios-close-empty"></span></button>
+    <nav>
+        <ul>
+            <li><a href="#">首页</a></li>
+            <li><a href="#">博客</a></li>
+            <li><a href="#">关于</a></li>
+            <li><a href="#">联系</a></li>
+        </ul>
+    </nav>
+</div>
+
+<script src="{% static 'base/js/script.js' %}"></script>
+
+</body>
+</html>
