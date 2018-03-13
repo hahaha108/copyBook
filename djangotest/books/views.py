@@ -10,6 +10,19 @@ class IndexView(ListView):
     model = Book
     template_name = 'index.html'
     context_object_name = 'booklist'
+	
+	paginate_by = 6
+
+    def get_context_data(self, **kwargs):
+        # 先调用父类的方法，获取默认的context
+        context = super().get_context_data(**kwargs)
+        paginator = context.get('paginator')
+        page = context.get('page_obj')
+        start, end = utils.custompaginator(paginator.num_pages, page.number, 3)
+        context.update({
+            'page_range': range(start, end + 1)
+        })
+        return context
 
 class BookListView(ListView):
     model = Book
