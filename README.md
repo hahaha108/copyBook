@@ -71,16 +71,13 @@ class Tag(models.Model):
 本次使用了Django官方推荐的通用视图类，网站主要分为三个页面：主页（IndexView）、图书详情页（BookView）以及章节详情页(ChapterView)，前端模板页面使用了bootstrap框架，整个网站风格比较简洁，运行效果如下：
 
 - **主页：**
-- 
 ![](https://i.imgur.com/uggyQYu.jpg)
 
 ![](https://i.imgur.com/EP6zF83.jpg)
 
 
 - **图书详情页：**
-- 
 ![](https://i.imgur.com/j2UnkY1.jpg)
 
 - **章节详情页：**
-- 
 ![](https://i.imgur.com/aBerDoX.jpg)
