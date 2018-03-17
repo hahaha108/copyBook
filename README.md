@@ -10,7 +10,7 @@
 爬虫框架：scrapy <br> 数据库：sqlite <br> web框架：Django，bootstrap
 
 
-###二、数据模型建立：
+### 二、数据模型建立：
 本项目数据库表使用Django数据库迁移命令自动生成，为了保证爬虫爬取到的数据可以用于自己的Web项目，因此定义的scrapy中item和Django中的数据模型必须存在一定的对应关系，具体如下：
 
 Book表：
