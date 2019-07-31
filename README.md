@@ -7,23 +7,30 @@
 ----------
 
 ### 一、用到的技术：
-运行环境：python3.6
-爬虫框架：scrapy <br> 数据库：sqlite <br> web框架：Django，bootstrap
-运行方式：
+运行环境：python3.6 <br>
+爬虫框架：scrapy <br> 数据库：sqlite <br> web框架：Django，bootstrap <br>
+安装依赖：<br>
+`python -m pip install scrapy`<br>
+`python -m pip install django`<br>
+`python -m pip install Pillow`<br>
 
-启动爬虫
+运行方式：<br>
+
+启动爬虫 <br>
 
 `cd bookspider`
 
 `python start.py`
 
-启动网站
+启动网站 <br>
 
 `cd djangotest`
 
 `python manage.py migrate`
 
 `python manage.py runserver`
+
+http://127.0.0.1:8000/index
 
 ### 二、数据模型建立：
 本项目数据库表使用Django数据库迁移命令自动生成，为了保证爬虫爬取到的数据可以用于自己的Web项目，因此定义的scrapy中item和Django中的数据模型必须存在一定的对应关系，具体如下：

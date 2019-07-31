@@ -2,3 +2,6 @@
 /.vscode/*
 */__pycache__/*
 */.idea/*
+/djangotest/books/__pycache__/*
+/djangotest/books/migrations/__pycache__/*
+*__pycache__/
