@@ -1,0 +1,4 @@
+/bookspider/cover/*
+/.vscode/*
+*/__pycache__/*
+*/.idea/*
