@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
@@ -11,7 +12,7 @@ class IndexView(ListView):
     template_name = 'index.html'
     context_object_name = 'booklist'
 	
-	paginate_by = 6
+    paginate_by = 6
 
     def get_context_data(self, **kwargs):
         # 先调用父类的方法，获取默认的context
